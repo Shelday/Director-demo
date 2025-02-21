@@ -47,7 +47,7 @@ class VideoDBProxy(BaseLLM):
         except ImportError:
             raise ImportError("Please install OpenAI python library.")
 
-        self.client = openai.OpenAI(api_key=self.api_key, base_url=f"{self.api_base}")
+        self.client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"), base_url=os.getenv("OPENAI_BASE_URL"))
 
     def _format_messages(self, messages: list):
         """Format the messages to the format that OpenAI expects."""

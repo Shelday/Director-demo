@@ -1,3 +1,4 @@
+import os
 from abc import ABC, abstractmethod
 from typing import List, Dict
 
@@ -35,10 +36,10 @@ class BaseLLMConfig(BaseSettings):
     :param int timeout: Timeout for the request.
     """
 
-    llm_type: str = ""
-    api_key: str = ""
-    api_base: str = ""
-    chat_model: str = ""
+    llm_type: str = "openai"
+    api_key: str = os.getenv("OPENAI_API_KEY")
+    api_base: str = os.getenv("OPENAI_BASE_URL")
+    chat_model: str = "gpt-4o"
     temperature: float = 0.9
     top_p: float = 1
     max_tokens: int = 4096

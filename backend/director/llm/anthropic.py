@@ -1,3 +1,5 @@
+import os
+
 from enum import Enum
 
 from pydantic import Field, field_validator, FieldValidationInfo
@@ -30,7 +32,7 @@ class AnthropicAIConfig(BaseLLMConfig):
 
     llm_type: str = LLMType.ANTHROPIC
     api_key: str = ""
-    api_base: str = ""
+    api_base: str = os.getenv("ANTHROPIC_BASE_URL")
     chat_model: str = Field(default=AnthropicChatModel.CLAUDE_3_5_SONNET)
 
     @field_validator("api_key")

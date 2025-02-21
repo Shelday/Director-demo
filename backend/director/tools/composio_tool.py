@@ -9,7 +9,7 @@ def composio_tool(task: str):
     from openai import OpenAI
 
     key = os.getenv("OPENAI_API_KEY")
-    base_url = "https://api.openai.com/v1"
+    base_url = os.getenv("OPENAI_BASE_URL")
 
     if not key:
         key = os.getenv("VIDEO_DB_API_KEY")

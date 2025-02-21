@@ -1,4 +1,6 @@
+import os
 import json
+
 from enum import Enum
 
 from pydantic import Field, field_validator, FieldValidationInfo
@@ -31,8 +33,8 @@ class OpenaiConfig(BaseLLMConfig):
     )
 
     llm_type: str = LLMType.OPENAI
-    api_key: str = ""
-    api_base: str = "https://api.openai.com/v1"
+    api_key: str = os.getenv("OPENAI_API_KEY")
+    api_base: str = os.getenv("OPENAI_BASE_URL")
     chat_model: str = Field(default=OpenAIChatModel.GPT4o)
     max_tokens: int = 4096
 
