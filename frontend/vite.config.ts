@@ -1,17 +1,17 @@
-import os from 'os';
+import dotenv from 'dotenv';
 import { defineConfig, loadEnv } from 'vite';
 import vue from '@vitejs/plugin-vue';
 
-export default ({ mode }) => {
+dotenv.config();
+
+export default ({ mode }: { mode: string }) => {
   // Load environment variables based on the current mode (e.g., 'development', 'production')
   const env = loadEnv(mode, process.cwd());
 
   return defineConfig({
     plugins: [vue()],
     server: {
-      allowedHosts: [
-        os.getenv("VITE_ALLOWED_HOSTS")
-      ],
+      allowedHosts: [process.env.VITE_ALLOWED_HOSTS || 'localhost'],
       host: '0.0.0.0',
       port: parseInt(env.VITE_PORT),  // Access the port directly from the env object
       open: env.VITE_OPEN_BROWSER === 'false' ? false : true,  // Use the environment variable to control browser opening, default to true
