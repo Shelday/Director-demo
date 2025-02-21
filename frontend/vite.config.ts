@@ -12,7 +12,7 @@ export default ({ mode }: { mode: string }) => {
     plugins: [vue()],
     server: {
       allowedHosts: [process.env.VITE_ALLOWED_HOSTS || 'localhost'],
-      host: '0.0.0.0',
+      host: process.env.VITE_ALLOWED_HOSTS || 'localhost',
       port: parseInt(env.VITE_PORT),  // Access the port directly from the env object
       open: env.VITE_OPEN_BROWSER === 'false' ? false : true,  // Use the environment variable to control browser opening, default to true
     },
